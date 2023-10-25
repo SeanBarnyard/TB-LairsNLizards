@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    public int turn = 0;
     public List<GameObject> objectTurn;
-    public List<GameObject> actors;
+    List<GameObject> actors;
 
     private void Start()
     {
@@ -15,10 +16,12 @@ public class TurnManager : MonoBehaviour
             actors.Add(actor);
         }
         Initiative();
+        
     }
 
     private void Update()
     {
+
 
     }
 
