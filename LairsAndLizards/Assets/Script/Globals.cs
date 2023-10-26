@@ -5,6 +5,7 @@ using UnityEngine;
 public class Globals : MonoBehaviour
 {
     public static Globals instance;
+    public StatSheet member1, member2, member3;
 
     private void Awake()
     {

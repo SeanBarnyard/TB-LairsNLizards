@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
 {
     public int turn = 0;
     public List<GameObject> objectTurn;
-    List<GameObject> actors;
+    List<GameObject> actors = new List<GameObject>();
 
     private void Start()
     {
@@ -19,10 +19,10 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    private void Update()
+    public void NextTurn()
     {
-
-
+        turn++;
+        if(turn >= objectTurn.Count) turn = 0;
     }
 
     void Initiative()
