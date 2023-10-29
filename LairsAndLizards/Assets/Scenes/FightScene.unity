@@ -158,10 +158,10 @@ MonoBehaviour:
   dexterity: 0
   intelligence: 0
   hp: 0
-  player: 0
-  atk2Up: 0
-  atk3Up: 0
-  atk4Up: 0
+  player: 1
+  atk2Up: 1
+  atk3Up: 1
+  atk4Up: 1
 --- !u!212 &11167037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1130,10 +1130,10 @@ MonoBehaviour:
   dexterity: 0
   intelligence: 0
   hp: 0
-  player: 0
-  atk2Up: 0
-  atk3Up: 0
-  atk4Up: 0
+  player: 1
+  atk2Up: 1
+  atk3Up: 1
+  atk4Up: 1
 --- !u!212 &720918542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3137,10 +3137,10 @@ MonoBehaviour:
   dexterity: 0
   intelligence: 0
   hp: 0
-  player: 0
-  atk2Up: 0
-  atk3Up: 0
-  atk4Up: 0
+  player: 1
+  atk2Up: 1
+  atk3Up: 1
+  atk4Up: 1
 --- !u!212 &1969475207
 SpriteRenderer:
   m_ObjectHideFlags: 0

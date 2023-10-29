@@ -31,6 +31,7 @@ public class TurnManager : MonoBehaviour
     {
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
+        Globals.instance.charecterTurn = objectTurn[turn];
     }
 
     void Initiative()
