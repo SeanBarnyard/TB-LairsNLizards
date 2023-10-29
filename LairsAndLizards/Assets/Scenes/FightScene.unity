@@ -153,11 +153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 1
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &11167037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -199,7 +203,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1707330866, guid: fd42919f8aecfcf4594468752bc5be19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -219,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 11167035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: -0.03587109, z: 0}
+  m_LocalPosition: {x: -6.5, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,7 +242,7 @@ GameObject:
   - component: {fileID: 63515121}
   - component: {fileID: 63515120}
   m_Layer: 5
-  m_Name: Button
+  m_Name: AttackButton(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +420,7 @@ GameObject:
   - component: {fileID: 240067131}
   m_Layer: 5
   m_Name: Image (2)
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -535,7 +539,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.18465643, g: 0.5377358, b: 0.2497377, a: 1}
   m_FlipX: 0
@@ -667,7 +671,7 @@ GameObject:
   - component: {fileID: 432765805}
   - component: {fileID: 432765804}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: AttackButton(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -378.03918, y: -540.056}
+  m_AnchoredPosition: {x: -378.03918, y: -432.04477}
   m_SizeDelta: {x: 208.13, y: 274.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432765804
@@ -938,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dd7bcad44688943b03a5f489576864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charecterTurn: {fileID: 0}
 --- !u!4 &565885370
 Transform:
   m_ObjectHideFlags: 0
@@ -1120,11 +1125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 0
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &720918542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1165,8 +1174,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 898257731, guid: fd42919f8aecfcf4594468752bc5be19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1186,7 +1195,7 @@ Transform:
   m_GameObject: {fileID: 720918540}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.07, y: 1.3141289, z: 0}
+  m_LocalPosition: {x: -4, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1222,11 +1231,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 3
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &764335353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1307,7 +1320,7 @@ GameObject:
   - component: {fileID: 785828879}
   m_Layer: 5
   m_Name: Image (1)
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1488,7 +1501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 824007919}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1217170326}
+        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+        m_MethodName: NextTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &824007919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,6 +1913,10 @@ MonoBehaviour:
   Characters: []
   CharIcon: []
   Charsprites: []
+  atk1: {fileID: 63515120}
+  atk2: {fileID: 2087669016}
+  atk3: {fileID: 432765804}
+  atk4: {fileID: 1441141042}
 --- !u!114 &1078413894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,7 +2159,7 @@ GameObject:
   - component: {fileID: 1145872061}
   m_Layer: 5
   m_Name: Image (5)
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2268,11 +2297,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 4
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &1289734916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2358,7 +2391,7 @@ GameObject:
   - component: {fileID: 1322252087}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2438,7 +2471,7 @@ GameObject:
   - component: {fileID: 1441141043}
   - component: {fileID: 1441141042}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: AttackButton(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2461,7 +2494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.01682, y: -540.056}
+  m_AnchoredPosition: {x: -162.01682, y: -432.04474}
   m_SizeDelta: {x: 208.13, y: 274.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441141042
@@ -2707,7 +2740,7 @@ GameObject:
   - component: {fileID: 1660976951}
   m_Layer: 5
   m_Name: Image (4)
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2918,11 +2951,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 5
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &1932575117
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3003,7 +3040,7 @@ GameObject:
   - component: {fileID: 1956664197}
   m_Layer: 5
   m_Name: Image (3)
-  m_TagString: Untagged
+  m_TagString: TopIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3095,11 +3132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa965251a508c04fa48decd9b785c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorNumber: 2
   strength: 0
   dexterity: 0
   intelligence: 0
   hp: 0
   player: 0
+  atk2Up: 0
+  atk3Up: 0
+  atk4Up: 0
 --- !u!212 &1969475207
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3140,8 +3181,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -1427097480, guid: fd42919f8aecfcf4594468752bc5be19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3161,7 +3202,7 @@ Transform:
   m_GameObject: {fileID: 1969475205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -2.035871, z: 0}
+  m_LocalPosition: {x: -3.5, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3376,7 +3417,7 @@ GameObject:
   - component: {fileID: 2087669017}
   - component: {fileID: 2087669016}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: AttackButton(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

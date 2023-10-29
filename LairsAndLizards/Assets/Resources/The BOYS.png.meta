@@ -178,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Delinquant
+      name: Delinquent
       rect:
         serializedVersion: 2
         x: 300
@@ -273,7 +273,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       CrossBearer: -679949372
-      Delinquant: 898257731
+      Delinquent: 898257731
       NatureSprite: 1754763101
       Novice: -1427097480
       Sonneteer: 258414943

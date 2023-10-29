@@ -9,13 +9,21 @@ public class TurnManager : MonoBehaviour
     public List<GameObject> objectTurn;
     List<GameObject> actors = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         foreach (GameObject actor in GameObject.FindGameObjectsWithTag("Actor"))
         {
             actors.Add(actor);
+            if(actor.TryGetComponent(out Character character))
+            {
+                if (character.actorNumber == 0) character.stats = Globals.instance.member1;
+                if (character.actorNumber == 1) character.stats = Globals.instance.member2;
+                if (character.actorNumber == 2) character.stats = Globals.instance.member3;
+                character.UpdateStats();
+            }
         }
         Initiative();
+        Globals.instance.charecterTurn = objectTurn[0];
         
     }
 
