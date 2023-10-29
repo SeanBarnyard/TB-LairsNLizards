@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    public UIscroller Uiscroll;
     public int turn = 0;
     public List<GameObject> objectTurn;
     List<GameObject> actors = new List<GameObject>();
@@ -24,7 +25,12 @@ public class TurnManager : MonoBehaviour
         }
         Initiative();
         Globals.instance.charecterTurn = objectTurn[0];
-        
+        Uiscroll.Characters = objectTurn;
+    }
+
+    void LateUpdate()
+    {
+        Uiscroll.GetDeezChars();
     }
 
     public void NextTurn()

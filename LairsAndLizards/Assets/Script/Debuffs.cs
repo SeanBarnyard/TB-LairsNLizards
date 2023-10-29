@@ -5,7 +5,6 @@ using UnityEngine;
 public class Debuffs : MonoBehaviour
 {
     [SerializeField]List<int> Priority;
-    [SerializeField]testchar[] Peopleindaroom;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,18 +12,6 @@ public class Debuffs : MonoBehaviour
     }
     private void Awake()
     {
-        Peopleindaroom = GameObject.FindObjectsOfType<testchar>();
-        if(Peopleindaroom != null)
-        {
-            foreach(var Stat in Peopleindaroom)
-            {
-                Stat.TryGetComponent<testchar>(out testchar DexStat);
-                Priority.Add(DexStat.dex);
-
-          
-
-            }
-        }
         
     }
 

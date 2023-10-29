@@ -2265,6 +2265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25034112f17a8c4bb4999bfe2d9871b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Uiscroll: {fileID: 1078413893}
   turn: 0
   objectTurn: []
 --- !u!1 &1289734914

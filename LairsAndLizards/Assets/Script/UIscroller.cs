@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class UIscroller : MonoBehaviour
 {
     public List<GameObject>  CharImage,Characters;
@@ -13,6 +13,9 @@ public class UIscroller : MonoBehaviour
 
 
     private void Awake()
+    {
+    }
+    public void GetDeezChars()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -26,23 +29,27 @@ public class UIscroller : MonoBehaviour
                 
             } 
         }
-        foreach (var Character in GameObject.FindGameObjectsWithTag("Actor"))
+        for (int i = 0; i < Characters.Count; i++)
         {
-            Characters.Add(Character);
+           CharIcon[i].sprite = Characters[i].GetComponent<SpriteRenderer>().sprite;
         }
-        foreach (var Charact in Characters)
-        {
-            Charsprites.Add(Charact.GetComponent<SpriteRenderer>().sprite);
-        }
-        for (int i = 0; i < CharIcon.Count; i++)
-        {
-            for (int b = 0; b < Charsprites.Count; b++)
-            {
-                CharIcon[i].sprite = Charsprites[b];
+        //foreach (var Character in GameObject.FindGameObjectsWithTag("Actor"))
+        //{
+        //    Characters.Add(Character);
+        //}
+        //foreach (var Charact in Characters)
+        //{
+        //    Charsprites.Add(Charact.GetComponent<SpriteRenderer>().sprite);
+        //}
+        //for (int i = 0; i < CharIcon.Count; i++)
+        //{
 
-            }
-        }
+        //        CharIcon[i].sprite = Charsprites;
+
+            
+        //}
         
+
     }
 
     void Update()
@@ -65,7 +72,10 @@ public class UIscroller : MonoBehaviour
                     atk3.interactable = false;
                     atk4.interactable = false;
                 }
-
+                atk1.GetComponentInChildren<TextMeshProUGUI>().text = character.stats.attack1.name;
+                atk2.GetComponentInChildren<TextMeshProUGUI>().text = character.stats.attack2.name;
+                atk3.GetComponentInChildren<TextMeshProUGUI>().text = character.stats.attack3.name;
+                atk4.GetComponentInChildren<TextMeshProUGUI>().text = character.stats.attack4.name;
             }
         }
 
