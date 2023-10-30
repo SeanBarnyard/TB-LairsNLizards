@@ -53,12 +53,14 @@ public class Globals : MonoBehaviour
 
     void MakeAttacks()
     {
+        Modifiers mod = new Modifiers();
         empty.name = "Empty"; empty.id = 0;
 
         //Basic player attacks
-        basic.name = "Basic Attack"; basic.id = 1; basic.strRoll = true; basic.baseDamage = 1;
+        basic.name = "Basic Attack"; basic.id = 1; basic.usesStr = true; basic.baseDamage = 1;
 
-        wAbility.name = "FireBolt"; wAbility.id = 2;
+        wAbility.name = "FireBolt"; wAbility.id = 2; wAbility.intSave = 8; wAbility.usesInt = true;
+        mod.dot = 5; mod.duration = 3; wAbility.mods.Add(mod);
 
         kAbility.name = "Protect"; kAbility.id = 3;
 
@@ -66,7 +68,7 @@ public class Globals : MonoBehaviour
 
         rAbility.name = "Weak Point"; rAbility.id = 5;
 
-        pAbility.name = "Smite"; pAbility.id = 6;
+        pAbility.name = "Smite"; pAbility.id = 6; pAbility.neverMiss = true; pAbility.usesInt = true; pAbility.strRoll = true; pAbility.intRoll = true;
 
         dAbility.name = "IronBark"; dAbility.id = 7;
 
@@ -90,7 +92,7 @@ public class Globals : MonoBehaviour
         siphon.name = "Siphon"; siphon.id = 15; attackPool.Add(siphon);
 
         //Enemy Attacks
-        tSwipe.name = "Tail Swipe"; tSwipe.id = 16;
+        tSwipe.name = "Tail Swipe"; tSwipe.id = 16; tSwipe.baseDamage = 2; tSwipe.strRoll = true; tSwipe.targetGroup = true;
 
         fBreath.name = "Fire Breath"; fBreath.id = 17;
 

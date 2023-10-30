@@ -17,6 +17,11 @@ public class Character : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateStats();
+        
+    }
+
+    private void Start()
+    {
         hp = stats.vitality;
     }
 
@@ -30,8 +35,12 @@ public class Character : MonoBehaviour
                 buffStr += buffs[i].str;
                 buffDex += buffs[i].dex;
                 buffInt += buffs[i].wis;
+
+                hp -= buffs[i].dot;
+                buffs[i].duration -= 1;
             }
         }
+
         
 
         strength = Mathf.Clamp(stats.baseStr + item1.strMod + item2.strMod + buffStr, 0, 20);
@@ -42,12 +51,22 @@ public class Character : MonoBehaviour
     private void Update()
     {
         dead = hp <= 0;
+
+        foreach (var buff in buffs)
+        {
+            if(buff.duration <= 0)
+            {
+                buffs.Remove(buff);
+                return;
+            }
+        }
+
     }
 
     private void LateUpdate()
     {
         spriteRenderer.sprite = stats.sprite;
-        HpBar.value = hp / stats.vitality;
+        HpBar.value = (float)hp / (float)stats.vitality;
     }
 
 

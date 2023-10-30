@@ -10,6 +10,7 @@ public class TurnManager : MonoBehaviour
     public List<GameObject> objectTurn;
     public StatSheet StrLiz = new StatSheet(), DexLiz = new StatSheet(), IntLiz = new StatSheet(), defaultlizz = new StatSheet();
     List<GameObject> actors = new List<GameObject>();
+    public GameObject turnIndicator;
 
     bool selectTargetMode;
     [SerializeField]GameObject selectedTarget;
@@ -41,6 +42,11 @@ public class TurnManager : MonoBehaviour
     
     private void Update()
     {
+        if (objectTurn[turn] != null)
+        {
+            turnIndicator.transform.position = objectTurn[turn].transform.position;
+        }
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D col = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask("Actor"));
         if (col != null)
@@ -80,7 +86,12 @@ public class TurnManager : MonoBehaviour
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
+        objectTurn[turn].GetComponent<Character>().UpdateStats();
         Uiscroll.imageShift = true;
+        foreach (var actor in actors)
+        {
+            actor.GetComponent<Character>().targetable = false;
+        }
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
     }
 
@@ -97,17 +108,17 @@ public class TurnManager : MonoBehaviour
             else if (slot == 3) { attack = ss.attack4; actor.atk2Up = false; }
             if (actor.player)
             {
-                bool targetTeam = false;
-                if (attack.targetTeam) targetTeam = true;
-                HighlightTargets(targetTeam);
+                bool targetPlayerTeam = false;
+                if (attack.targetTeam) targetPlayerTeam = true;
+                HighlightTargets(targetPlayerTeam);
                 attackToUse = attack;
                 selectTargetMode = true;
             }
             else
             {
-                bool targetTeam = false;
-                if (attack.targetTeam) targetTeam = true;
-                HighlightTargets(targetTeam);
+                bool targetPlayerTeam = true;
+                if (attack.targetTeam) targetPlayerTeam = false;
+                HighlightTargets(targetPlayerTeam);
                 attackToUse = attack;
                 selectTargetMode = true;
             }
@@ -133,8 +144,10 @@ public class TurnManager : MonoBehaviour
     {
         Globals g = Globals.instance;
         Character c = g.charecterTurn.GetComponent<Character>();
+        
         foreach (GameObject actor in targets)
         {
+            Debug.Log("Working");
             bool hit = true;
             int strRoll = g.DiceRoll(6,1), dexRoll = g.DiceRoll(6, 1), intRoll = g.DiceRoll(6, 1);
             Character character = actor.GetComponent<Character>();
@@ -146,17 +159,19 @@ public class TurnManager : MonoBehaviour
             if (attackToUse.dexRoll) damage += dexRoll;
             if (attackToUse.intRoll) damage += intRoll;
 
-            if (!attackToUse.neverMiss && dexRoll <= 6) hit = false;
+            if (!attackToUse.neverMiss && (dexRoll + c.dexterity <= 5)) hit = false;
 
             if (hit)
             {
                 Character targetChar = actor.GetComponent<Character>();
-                if(attackToUse.mods.Count > 0)
+                targetChar.hp -= damage;
+                if (targetChar.hp <= 0) targetChar.dead = true;
+                if (attackToUse.mods.Count > 0)
                 {
                     bool save = true;
-                    if (targetChar.strength < attackToUse.strSave) save = false;
-                    if (targetChar.dexterity < attackToUse.dexSave) save = false;
-                    if (targetChar.intelligence < attackToUse.intSave) save = false;
+                    if (targetChar.strength + g.DiceRoll(4, 1) < attackToUse.strSave) save = false;
+                    if (targetChar.dexterity + g.DiceRoll(4, 1) < attackToUse.dexSave) save = false;
+                    if (targetChar.intelligence + g.DiceRoll(4, 1) < attackToUse.intSave) save = false;
 
                     if (!save)
                     {
@@ -165,8 +180,10 @@ public class TurnManager : MonoBehaviour
                             targetChar.buffs.Add(mod);
                         }
                     }
+                    else Debug.Log("Saved");
                 }
             }
+            else Debug.Log("You missed you bitch");
         }
 
         attackToUse = null;
@@ -217,19 +234,19 @@ public class TurnManager : MonoBehaviour
         
         //Str Lizard
         StrLiz.name = "Bricked up Benny"; StrLiz.vitality = 20;
-        StrLiz.baseStr = 4; StrLiz.baseDex = 2; StrLiz.baseInt = 3;
+        StrLiz.baseStr = 4; StrLiz.baseDex = 3; StrLiz.baseInt = 3;
         StrLiz.attack1 = Globals.instance.basic; StrLiz.attack2 = Globals.instance.tSwipe;
         Lizard.Add(StrLiz);
 
         //Dex Lizard
         DexLiz.name = "Fast and Lizard"; DexLiz.vitality = 15;
-        DexLiz.baseStr = 2; DexLiz.baseDex = 4; DexLiz.baseInt = 3;
+        DexLiz.baseStr = 2; DexLiz.baseDex = 5; DexLiz.baseInt = 3;
         DexLiz.attack1 = Globals.instance.basic; DexLiz.attack2 = Globals.instance.sStorm;
         Lizard.Add(DexLiz);
 
         //Int Lizard
         IntLiz.name = "Demetrius Demarcus Bartholomew James The Third"; IntLiz.vitality = 10;
-        IntLiz.baseStr = 2; IntLiz.baseDex = 3; IntLiz.baseInt = 4;
+        IntLiz.baseStr = 2; IntLiz.baseDex = 4; IntLiz.baseInt = 4;
         IntLiz.attack1 = Globals.instance.basic; IntLiz.attack2 = Globals.instance.fBreath;
         Lizard.Add(IntLiz);
 
