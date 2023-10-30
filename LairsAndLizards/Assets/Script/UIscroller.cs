@@ -7,7 +7,7 @@ public class UIscroller : MonoBehaviour
 {
     public List<GameObject>  CharImage,Characters;
     public List<Image> CharIcon;
-
+    public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
 
     bool getList = true; 
@@ -35,6 +35,7 @@ public class UIscroller : MonoBehaviour
 
     void Update()
     {
+        Nextturnimagescroll();
         if (!getList)
         {
             if (Globals.instance.charecterTurn != null)
@@ -68,11 +69,17 @@ public class UIscroller : MonoBehaviour
                     Characters[i].GetComponent<SpriteRenderer>().color = Color.red;
                     CharIcon[i].color = Color.red;
                 }
+                else if (Characters[i].GetComponent<Character>().targetable)
+                {
+                    Characters[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0.5f, 1f);
+                    CharIcon[i].color = new Color(0,0,0.5f,1f);
+                }
                 else
                 {
                     Characters[i].GetComponent<SpriteRenderer>().color = Color.white;
                     CharIcon[i].color = Color.white;
                 }
+
             }
         }
         
@@ -86,5 +93,19 @@ public class UIscroller : MonoBehaviour
             getList = false;
         }
         GetDeezChars();
+    }
+
+    public void Nextturnimagescroll()
+    {
+        for (int i = 0; i < turnmanager.objectTurn.Count; i++)
+        {
+            
+        }
+        //if(Globals.instance.charecterTurn == turnmanager.objectTurn[turnmanager.turn])
+        //{
+            
+        //}
+            
+       
     }
 }

@@ -164,12 +164,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 1
-  dotdur: 1
-  statmoddur: 1
-  silencedur: 1
-  markdur: 1
 --- !u!212 &11167037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1072,12 +1066,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 0
-  dotdur: 0
-  statmoddur: 0
-  silencedur: 0
-  markdur: 0
 --- !u!212 &720918542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1221,12 +1209,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 1
-  dotdur: 1
-  statmoddur: 1
-  silencedur: 1
-  markdur: 1
 --- !u!212 &764335353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1840,6 +1822,7 @@ MonoBehaviour:
   CharImage: []
   Characters: []
   CharIcon: []
+  turnmanager: {fileID: 1217170326}
   atk1: {fileID: 63515120}
   atk2: {fileID: 2087669016}
   atk3: {fileID: 432765804}
@@ -2237,12 +2220,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 1
-  dotdur: 1
-  statmoddur: 1
-  silencedur: 1
-  markdur: 1
 --- !u!212 &1289734916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2800,12 +2777,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 1
-  dotdur: 1
-  statmoddur: 1
-  silencedur: 1
-  markdur: 1
 --- !u!212 &1932575117
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3024,12 +2995,6 @@ MonoBehaviour:
   atk3Up: 1
   atk4Up: 1
   dead: 0
-  stunned: 0
-  stundur: 1
-  dotdur: 1
-  statmoddur: 1
-  silencedur: 1
-  markdur: 1
 --- !u!212 &1969475207
 SpriteRenderer:
   m_ObjectHideFlags: 0
