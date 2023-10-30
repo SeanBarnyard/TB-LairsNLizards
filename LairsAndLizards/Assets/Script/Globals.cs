@@ -37,7 +37,10 @@ public class Globals : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
-
+    public void QUITGAME()
+    {
+        Application.Quit();
+    }
     public int DiceRoll(int face, int amount)
     {
         int total = 0;
