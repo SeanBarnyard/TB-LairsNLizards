@@ -9,6 +9,7 @@ public class UIscroller : MonoBehaviour
     public List<Image> CharIcon;
     public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
+    public bool imageShift;
     public List<float> position = new List<float>();
 
     bool getList = true;
@@ -49,6 +50,10 @@ public class UIscroller : MonoBehaviour
 
     void Update()
     {
+        if (imageShift)
+        {
+            Nextturnimagescroll();
+        }
         if (!getList)
         {
             if (Globals.instance.charecterTurn != null)
@@ -109,7 +114,8 @@ public class UIscroller : MonoBehaviour
 
     public void Nextturnimagescroll()
     {
-        if (turnmanager.objectTurn[0])
+        
+        if (turnmanager.turn == 0)
         {
             CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition,new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y), 100 * Time.deltaTime);
         }

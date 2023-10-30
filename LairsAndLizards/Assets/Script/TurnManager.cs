@@ -80,7 +80,7 @@ public class TurnManager : MonoBehaviour
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
-        Uiscroll.Nextturnimagescroll();
+        Uiscroll.imageShift = true;
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
     }
 
