@@ -163,5 +163,16 @@ public class TurnManager : MonoBehaviour
     //    }
     //}
 
+    void ApplyDebuff()
+    {
+        //stun
+
+
+        //dot
+
+        //statmod
+
+        //silenced
+    }
 
 }

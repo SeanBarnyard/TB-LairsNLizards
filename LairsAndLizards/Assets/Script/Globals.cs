@@ -33,11 +33,6 @@ public class Globals : MonoBehaviour
         else Destroy(this);
     }
 
-    private void LateUpdate()
-    {
-        if (SceneManager.GetActiveScene().name == "StartScreen") GoToScene("PartySelect");
-    }
-
     public void GoToScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -91,6 +86,7 @@ public class Modifiers
     public int duration = 0, dot = 0, str = 0, dex = 0, wis = 0; //Dot if made negative makes a heal over time, int already exists :(
     public bool taunt = false;
     public bool silence = false;
+    public bool stun = false;
 
 }
 
