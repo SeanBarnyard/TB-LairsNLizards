@@ -48,7 +48,30 @@ public class TurnManager : MonoBehaviour
             selectedTarget = col.gameObject;
         }
         else selectedTarget = null;
-        
+
+        if (selectTargetMode)
+        {
+            if(selectedTarget != null && Input.GetMouseButton(0))
+            {
+                List<GameObject> targets = new List<GameObject>(); 
+                if (attackToUse.targetGroup)
+                {
+                    foreach (GameObject item in actors)
+                    {
+                        Character character = item.GetComponent<Character>();
+                        if (character.targetable) targets.Add(item);
+                    }
+                        
+                }
+                else
+                {
+                    targets.Add(selectedTarget);
+                }
+                UseAttack(targets);
+            }
+
+        }
+
     }
 
     public void NextTurn()
@@ -56,6 +79,7 @@ public class TurnManager : MonoBehaviour
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
+        Uiscroll.Nextturnimagescroll();
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
     }
 
@@ -104,7 +128,7 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    public void UseAttack()
+    public void UseAttack(List<GameObject> targets)
     {
         
     }
