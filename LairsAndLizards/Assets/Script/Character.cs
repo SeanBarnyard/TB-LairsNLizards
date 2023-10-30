@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     public Equipment item1 = new Equipment(), item2 = new Equipment();
     public List<Modifiers> buffs = new List<Modifiers>();
     public int strength, dexterity, intelligence, hp;
-    public bool player, atk2Up = true, atk3Up = true, atk4Up = true;
+    public bool player, atk2Up = true, atk3Up = true, atk4Up = true,dead;
     SpriteRenderer spriteRenderer;
 
     private void Awake()

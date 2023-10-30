@@ -63,7 +63,7 @@ public class Globals : MonoBehaviour
         bAbility.name = "C Major"; bAbility.id = 4;
         rAbility.name = "Weak Point"; rAbility.id = 5;
         pAbility.name = "Smite"; pAbility.id = 6;
-        dAbility.name = "FireBolt"; dAbility.id = 7;
+        dAbility.name = "IronBark"; dAbility.id = 7;
         //Additional lootable player attacks
         pSand.name = "Pocket Sand"; pSand.id = 8; attackPool.Add(pSand);
         cleanse.name = "Cleanse"; cleanse.id = 9; attackPool.Add(cleanse);
@@ -81,5 +81,6 @@ public class Globals : MonoBehaviour
         sStorm.name = "Sandstorm"; sStorm.id = 19;
 
     }
+
 
 }
