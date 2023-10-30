@@ -131,13 +131,47 @@ public class TurnManager : MonoBehaviour
 
     public void UseAttack(List<GameObject> targets)
     {
+        Globals g = Globals.instance;
+        Character c = g.charecterTurn.GetComponent<Character>();
         foreach (GameObject actor in targets)
         {
+            bool hit = true;
+            int strRoll = g.DiceRoll(6,1), dexRoll = g.DiceRoll(6, 1), intRoll = g.DiceRoll(6, 1);
             Character character = actor.GetComponent<Character>();
-            int damage = 0;
+            int damage = attackToUse.baseDamage;
+            if (attackToUse.usesStr) damage += c.strength;
+            if (attackToUse.usesDex) damage += c.dexterity;
+            if (attackToUse.usesInt) damage += c.intelligence;
+            if (attackToUse.strRoll) damage += strRoll;
+            if (attackToUse.dexRoll) damage += dexRoll;
+            if (attackToUse.intRoll) damage += intRoll;
 
+            if (!attackToUse.neverMiss && dexRoll <= 6) hit = false;
 
+            if (hit)
+            {
+                Character targetChar = actor.GetComponent<Character>();
+                if(attackToUse.mods.Count > 0)
+                {
+                    bool save = true;
+                    if (targetChar.strength < attackToUse.strSave) save = false;
+                    if (targetChar.dexterity < attackToUse.dexSave) save = false;
+                    if (targetChar.intelligence < attackToUse.intSave) save = false;
+
+                    if (!save)
+                    {
+                        foreach (Modifiers mod in attackToUse.mods)
+                        {
+                            targetChar.buffs.Add(mod);
+                        }
+                    }
+                }
+            }
         }
+
+        attackToUse = null;
+        NextTurn();
+
     }
 
     void Initiative()

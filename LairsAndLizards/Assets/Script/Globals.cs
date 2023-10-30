@@ -54,28 +54,48 @@ public class Globals : MonoBehaviour
     void MakeAttacks()
     {
         empty.name = "Empty"; empty.id = 0;
+
         //Basic player attacks
-        basic.name = "Basic Attack"; basic.id = 1;
+        basic.name = "Basic Attack"; basic.id = 1; basic.strRoll = true; basic.baseDamage = 1;
+
         wAbility.name = "FireBolt"; wAbility.id = 2;
+
         kAbility.name = "Protect"; kAbility.id = 3;
+
         bAbility.name = "C Major"; bAbility.id = 4;
+
         rAbility.name = "Weak Point"; rAbility.id = 5;
+
         pAbility.name = "Smite"; pAbility.id = 6;
+
         dAbility.name = "IronBark"; dAbility.id = 7;
+
         //Additional lootable player attacks
         pSand.name = "Pocket Sand"; pSand.id = 8; attackPool.Add(pSand);
+
         cleanse.name = "Cleanse"; cleanse.id = 9; attackPool.Add(cleanse);
+
         flail.name = "Flail"; flail.id = 7; attackPool.Add(flail);
+
         charge.name = "Reckless Charge"; charge.id = 10; attackPool.Add(charge);
+
         riddle.name = "Riddle of Immolation"; riddle.id = 11; attackPool.Add(riddle);
+
         boomer.name = "Boomerang"; boomer.id = 12; attackPool.Add(boomer);
+
         cMinor.name = "C Minor"; cMinor.id = 13; attackPool.Add(cMinor);
+
         regen.name = "Regen"; regen.id = 14; attackPool.Add(regen);
+
         siphon.name = "Siphon"; siphon.id = 15; attackPool.Add(siphon);
+
         //Enemy Attacks
         tSwipe.name = "Tail Swipe"; tSwipe.id = 16;
+
         fBreath.name = "Fire Breath"; fBreath.id = 17;
+
         gasReg.name = "Gas Regurgatate"; gasReg.id = 18;
+
         sStorm.name = "Sandstorm"; sStorm.id = 19;
 
     }
@@ -98,7 +118,7 @@ public class Attacks
     public string name = "empty", description = "Does a thing";
     public int id = -1;
     public int baseDamage = 0, strSave = 0, dexSave = 0, intSave = 0;
-    public bool targetGroup = false, targetTeam = false,
+    public bool targetGroup = false, targetTeam = false, neverMiss = false,
         usesStr = false, usesDex = false, usesInt = false, 
         strRoll = false, dexRoll = false, intRoll = false;
     public List<Modifiers> mods = new List<Modifiers>();

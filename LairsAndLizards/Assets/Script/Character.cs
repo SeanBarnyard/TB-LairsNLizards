@@ -42,11 +42,6 @@ public class Character : MonoBehaviour
     {
         dead = hp <= 0;
 
-        if (Globals.instance.charecterTurn == gameObject)
-        {
-
-
-        }
     }
 
     private void LateUpdate()
