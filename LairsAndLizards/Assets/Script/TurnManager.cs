@@ -11,6 +11,10 @@ public class TurnManager : MonoBehaviour
     public StatSheet StrLiz = new StatSheet(), DexLiz = new StatSheet(), IntLiz = new StatSheet(), defaultlizz = new StatSheet();
     List<GameObject> actors = new List<GameObject>();
 
+    bool selectTargetMode;
+    [SerializeField]GameObject selectedTarget;
+    Attacks attackToUse = new Attacks();
+
     private void Awake()
     {
         MakeLizard();
@@ -34,13 +38,16 @@ public class TurnManager : MonoBehaviour
         Uiscroll.Characters = objectTurn;
     }
 
-    void LateUpdate()
-    {
-        Uiscroll.GetDeezChars();
-    }
+    
     private void Update()
     {
-        Death();
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D col = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask("Actor"));
+        if (col != null)
+        {
+            selectedTarget = col.gameObject;
+        }
+        else selectedTarget = null;
         
     }
 
@@ -50,6 +57,20 @@ public class TurnManager : MonoBehaviour
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
+    }
+
+    public void SelectAttack(int slot)
+    {
+        StatSheet ss = Globals.instance.charecterTurn.GetComponent<Character>().stats;
+        Attacks attack = new Attacks();
+        if (slot == 1) attack = ss.attack1; else if (slot == 2) attack = ss.attack2;
+        else if (slot == 2) attack = ss.attack3; else if (slot == 3) attack = ss.attack4;
+        //if(!attack.targetGroup)
+    }
+
+    public void UseAttack()
+    {
+        
     }
 
     void Initiative()
@@ -68,7 +89,7 @@ public class TurnManager : MonoBehaviour
         for (int i = 0; i < objectList.Count; i++)
         {
             int dexRoll = characterList[i].dexterity + Globals.instance.DiceRoll(6, 1);
-            Debug.Log(dexRoll);
+            //Debug.Log(dexRoll);
             iniRolls.Add(dexRoll);
         }
 
@@ -128,19 +149,19 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    void Death()
-    {
-        foreach (GameObject actor in actors)
-        {
-            if (actor.TryGetComponent(out Character character))
-            {
-                if(character.stats.vitality <= 0)
-                {
-                    character.dead = true;
-                }
-            }
-        }
-    }
+    //void Death()
+    //{
+    //    foreach (GameObject actor in actors)
+    //    {
+    //        if (actor.TryGetComponent(out Character character))
+    //        {
+    //            if(character.stats.vitality <= 0)
+    //            {
+    //                character.dead = true;
+    //            }
+    //        }
+    //    }
+    //}
 
 
 }

@@ -10,11 +10,11 @@ public class Globals : MonoBehaviour
     public StatSheet member1, member2, member3;
     public GameObject charecterTurn = null;
 
-    public struct Attacks
-    {
-        public string name;
-        public int id;
-    }
+    //public struct Attacks
+    //{
+    //    public string name;
+    //    public int id;
+    //}
     public List<Attacks> attackPool = new List<Attacks>();
     public Attacks empty = new Attacks(), basic = new Attacks(), kAbility = new Attacks(), wAbility = new Attacks(),
         rAbility = new Attacks(), bAbility = new Attacks(), pAbility = new Attacks(), dAbility = new Attacks(),
@@ -84,3 +84,38 @@ public class Globals : MonoBehaviour
 
 
 }
+
+public class Modifiers
+{
+    public string name = "Empty, we made an oopsie";
+    public int duration = 0, dot = 0, str = 0, dex = 0, wis = 0; //Dot if made negative makes a heal over time, int already exists :(
+    public bool taunt = false;
+    public bool silence = false;
+
+}
+
+public class Attacks
+{
+    public string name = "empty", description = "Does a thing";
+    public int id = -1;
+    public int baseDamage = 0, strSave = 0, dexSave = 0, intSave = 0;
+    public bool targetGroup = false, targetTeam = false,
+        usesStr = false, usesDex = false, usesInt = false, 
+        strRoll = false, dexRoll = false, intRoll = false;
+    public List<Modifiers> mods = new List<Modifiers>();
+
+}
+
+public class StatSheet
+{
+    public string name = "nothing? Why nothing?";
+    public Sprite sprite = null;
+    public int vitality = 10;
+    public int baseStr = 3, baseDex = 3, baseInt = 3;
+    public Attacks attack1 = Globals.instance.empty,
+        attack2 = Globals.instance.empty,
+        attack3 = Globals.instance.empty,
+        attack4 = Globals.instance.empty;
+}
+
+

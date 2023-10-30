@@ -40,6 +40,8 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        dead = hp <= 0;
+
         if (Globals.instance.charecterTurn == gameObject)
         {
 
@@ -55,27 +57,6 @@ public class Character : MonoBehaviour
 
 }
 
-public class StatSheet
-{
-    public string name = "nothing? Why nothing?";
-    public Sprite sprite = null;
-    public int vitality = 10;
-    public int baseStr = 3, baseDex = 3, baseInt = 3;
-    public Globals.Attacks attack1 = Globals.instance.empty,
-        attack2 = Globals.instance.empty,
-        attack3 = Globals.instance.empty,
-        attack4 = Globals.instance.empty;
-}
-
-public class Modifiers
-{
-    public string name = "Empty, we made an oopsie";
-    public int duration = 0, dot = 0, str = 0, dex = 0, wis = 0; //Dot if made negative makes a heal over time, int already exists :(
-    public bool taunt = false;
-    public bool silence = false;
-
-
-}
 
 
 
