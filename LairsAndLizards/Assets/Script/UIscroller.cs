@@ -9,6 +9,7 @@ public class UIscroller : MonoBehaviour
     public List<Image> CharIcon;
     public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
+    public int positionindex;
     public bool imageShift;
     public List<float> position = new List<float>();
 
@@ -112,13 +113,73 @@ public class UIscroller : MonoBehaviour
         GetDeezChars();
     }
 
-    public void Nextturnimagescroll()
+    void Nextturnimagescroll()
     {
-        
+        int speed = 250;
+        //for (int i = 0; i < CharIcon.Count; i++)
+        //{
+
+        //}
+        //foreach (var Icon in CharIcon)
+        //{
+        //    if(Icon.gameObject != Icon.gameObject)
+        //    Icon.rectTransform.localPosition = Vector2.MoveTowards(Icon.rectTransform.position, new Vector2(position[positionindex + 1], Icon.rectTransform.transform.position.y), speed * Time.deltaTime);
+        //}
         if (turnmanager.turn == 0)
         {
-            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition,new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y), 100 * Time.deltaTime);
+            CharIcon[5].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[1].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[1].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[2].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[2].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[3].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[3].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[4].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[4].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
         }
-       
+        if (turnmanager.turn == 1)
+        {
+            CharIcon[0].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[1].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[1].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[2].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[2].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[3].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[3].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[4].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[4].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[5].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[5].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+        }
+        if (turnmanager.turn == 2)
+        {
+            CharIcon[1].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[2].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[2].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[3].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[3].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[4].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[4].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[5].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[5].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+        }
+        if (turnmanager.turn == 3)
+        {
+            CharIcon[2].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[3].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[3].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[4].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[4].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[5].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[5].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[1].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[1].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+        }
+        if (turnmanager.turn == 4)
+        {
+            CharIcon[3].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[4].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[4].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[5].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[5].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[1].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[1].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[2].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[2].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+        }
+        if (turnmanager.turn == 5)
+        {
+            CharIcon[4].rectTransform.localPosition = new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y);
+            CharIcon[5].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[5].rectTransform.localPosition, new Vector2(position[0], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition, new Vector2(position[1], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[1].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[1].rectTransform.localPosition, new Vector2(position[2], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[2].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[2].rectTransform.localPosition, new Vector2(position[3], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+            CharIcon[3].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[3].rectTransform.localPosition, new Vector2(position[4], CharIcon[0].rectTransform.localPosition.y), speed * Time.deltaTime);
+        }
+
+
     }
 }
