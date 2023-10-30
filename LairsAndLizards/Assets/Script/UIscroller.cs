@@ -9,9 +9,23 @@ public class UIscroller : MonoBehaviour
     public List<Image> CharIcon;
     public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
+    public List<float> position = new List<float>();
 
-    bool getList = true; 
+    bool getList = true;
+    private void Awake()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).TryGetComponent(out Image imig))
+            {
+                if (imig.CompareTag("TopIcon"))
+                {
+                    if (!position.Contains(imig.rectTransform.localPosition.x)) position.Add(imig.rectTransform.localPosition.x);
+                }
 
+            }
+        }
+    }
     public void GetDeezChars()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -35,7 +49,6 @@ public class UIscroller : MonoBehaviour
 
     void Update()
     {
-        Nextturnimagescroll();
         if (!getList)
         {
             if (Globals.instance.charecterTurn != null)
@@ -88,8 +101,7 @@ public class UIscroller : MonoBehaviour
     private void LateUpdate()
     {
         if (getList)
-        {
-            
+        {        
             getList = false;
         }
         GetDeezChars();
@@ -97,15 +109,10 @@ public class UIscroller : MonoBehaviour
 
     public void Nextturnimagescroll()
     {
-        for (int i = 0; i < turnmanager.objectTurn.Count; i++)
+        if (turnmanager.objectTurn[0])
         {
-            
+            CharIcon[0].rectTransform.localPosition = Vector2.MoveTowards(CharIcon[0].rectTransform.localPosition,new Vector2(position[5], CharIcon[0].rectTransform.localPosition.y), 100 * Time.deltaTime);
         }
-        //if(Globals.instance.charecterTurn == turnmanager.objectTurn[turnmanager.turn])
-        //{
-            
-        //}
-            
        
     }
 }
