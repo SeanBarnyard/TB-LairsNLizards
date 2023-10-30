@@ -61,11 +61,47 @@ public class TurnManager : MonoBehaviour
 
     public void SelectAttack(int slot)
     {
-        StatSheet ss = Globals.instance.charecterTurn.GetComponent<Character>().stats;
-        Attacks attack = new Attacks();
-        if (slot == 1) attack = ss.attack1; else if (slot == 2) attack = ss.attack2;
-        else if (slot == 2) attack = ss.attack3; else if (slot == 3) attack = ss.attack4;
-        //if(!attack.targetGroup)
+        if (selectTargetMode == false)
+        {
+            Character actor = Globals.instance.charecterTurn.GetComponent<Character>();
+            StatSheet ss = actor.stats;
+            Attacks attack = new Attacks();
+            if (slot == 1) attack = ss.attack1;
+            else if (slot == 2) { attack = ss.attack2; actor.atk2Up = false; }
+            else if (slot == 2) { attack = ss.attack3; actor.atk2Up = false; }
+            else if (slot == 3) { attack = ss.attack4; actor.atk2Up = false; }
+            if (actor.player)
+            {
+                bool targetTeam = false;
+                if (attack.targetTeam) targetTeam = true;
+                HighlightTargets(targetTeam);
+                attackToUse = attack;
+                selectTargetMode = true;
+            }
+            else
+            {
+                bool targetTeam = false;
+                if (attack.targetTeam) targetTeam = true;
+                HighlightTargets(targetTeam);
+                attackToUse = attack;
+                selectTargetMode = true;
+            }
+
+
+        }
+
+    }
+
+    void HighlightTargets(bool playerTeam)
+    {
+        
+        foreach (GameObject item in actors)
+        {
+            Character chars = item.GetComponent<Character>();
+            if (playerTeam && chars.actorNumber <= 2) chars.targetable = true;
+            else if (!playerTeam && chars.actorNumber > 2) chars.targetable = true;
+        }
+        
     }
 
     public void UseAttack()
