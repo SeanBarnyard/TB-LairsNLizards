@@ -67,6 +67,7 @@ public class TurnManager : MonoBehaviour
                 {
                     targets.Add(selectedTarget);
                 }
+                selectTargetMode = false;
                 UseAttack(targets);
             }
 
@@ -130,7 +131,13 @@ public class TurnManager : MonoBehaviour
 
     public void UseAttack(List<GameObject> targets)
     {
-        
+        foreach (GameObject actor in targets)
+        {
+            Character character = actor.GetComponent<Character>();
+            int damage = 0;
+
+
+        }
     }
 
     void Initiative()
