@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     public int actorNumber;
     public StatSheet stats = new StatSheet();
     public Equipment item1 = new Equipment(), item2 = new Equipment();
     public List<Modifiers> buffs = new List<Modifiers>();
+    public Slider HpBar;
     public int strength, dexterity, intelligence, hp;
     public bool player, atk2Up = true, atk3Up = true, atk4Up = true, dead, targetable;
     SpriteRenderer spriteRenderer;
@@ -41,12 +42,12 @@ public class Character : MonoBehaviour
     private void Update()
     {
         dead = hp <= 0;
-
     }
 
     private void LateUpdate()
     {
         spriteRenderer.sprite = stats.sprite;
+        HpBar.value = hp / stats.vitality;
     }
 
 

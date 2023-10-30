@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class UIscroller : MonoBehaviour
 {
-    public List<GameObject>  CharImage,Characters;
+    public List<GameObject> CharImage, Characters;
     public List<Image> CharIcon;
     public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
@@ -32,19 +32,19 @@ public class UIscroller : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).TryGetComponent(out Image imig))
+            if (transform.GetChild(i).TryGetComponent(out Image imig))
             {
                 if (imig.CompareTag("TopIcon"))
                 {
-                    if(!CharImage.Contains(transform.GetChild(i).gameObject))CharImage.Add(transform.GetChild(i).gameObject);
-                    if(!CharIcon.Contains(imig))CharIcon.Add(imig);
+                    if (!CharImage.Contains(transform.GetChild(i).gameObject)) CharImage.Add(transform.GetChild(i).gameObject);
+                    if (!CharIcon.Contains(imig)) CharIcon.Add(imig);
                 }
-                
-            } 
+
+            }
         }
         for (int i = 0; i < Characters.Count; i++)
         {
-           CharIcon[i].sprite = Characters[i].GetComponent<SpriteRenderer>().sprite;
+            CharIcon[i].sprite = Characters[i].GetComponent<SpriteRenderer>().sprite;
         }
 
     }
@@ -91,7 +91,7 @@ public class UIscroller : MonoBehaviour
                 else if (Characters[i].GetComponent<Character>().targetable)
                 {
                     Characters[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0.5f, 1f);
-                    CharIcon[i].color = new Color(0,0,0.5f,1f);
+                    CharIcon[i].color = new Color(0, 0, 0.5f, 1f);
                 }
                 else
                 {
@@ -101,13 +101,13 @@ public class UIscroller : MonoBehaviour
 
             }
         }
-        
+
     }
 
     private void LateUpdate()
     {
         if (getList)
-        {        
+        {
             getList = false;
         }
         GetDeezChars();
