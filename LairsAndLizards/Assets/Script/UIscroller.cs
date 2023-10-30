@@ -10,11 +10,6 @@ public class UIscroller : MonoBehaviour
     public List<Sprite> Charsprites;
 
     public Button atk1, atk2, atk3, atk4;
-
-
-    private void Awake()
-    {
-    }
     public void GetDeezChars()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -78,6 +73,18 @@ public class UIscroller : MonoBehaviour
                 atk4.GetComponentInChildren<TextMeshProUGUI>().text = character.stats.attack4.name;
             }
         }
-
+        for (int i = 0; i < Characters.Count; i++)
+        {
+            if (Characters[i].GetComponent<Character>().dead)
+            {
+                Characters[i].GetComponent<SpriteRenderer>().color = Color.red;
+                CharIcon[i].color = Color.red;
+            }
+            else
+            {
+                Characters[i].GetComponent<SpriteRenderer>().color = Color.white;
+                CharIcon[i].color = Color.white;
+            }
+        }
     }
 }

@@ -162,6 +162,7 @@ MonoBehaviour:
   atk2Up: 1
   atk3Up: 1
   atk4Up: 1
+  dead: 0
 --- !u!212 &11167037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1158,6 +1159,7 @@ MonoBehaviour:
   atk2Up: 1
   atk3Up: 1
   atk4Up: 1
+  dead: 0
 --- !u!212 &720918542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1264,6 +1266,7 @@ MonoBehaviour:
   atk2Up: 0
   atk3Up: 0
   atk4Up: 0
+  dead: 0
 --- !u!212 &764335353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2331,6 +2334,7 @@ MonoBehaviour:
   atk2Up: 0
   atk3Up: 0
   atk4Up: 0
+  dead: 0
 --- !u!212 &1289734916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2997,6 +3001,7 @@ MonoBehaviour:
   atk2Up: 0
   atk3Up: 0
   atk4Up: 0
+  dead: 0
 --- !u!212 &1932575117
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3178,6 +3183,7 @@ MonoBehaviour:
   atk2Up: 1
   atk3Up: 1
   atk4Up: 1
+  dead: 0
 --- !u!212 &1969475207
 SpriteRenderer:
   m_ObjectHideFlags: 0
