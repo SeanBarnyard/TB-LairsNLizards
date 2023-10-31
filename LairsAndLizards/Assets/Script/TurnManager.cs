@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
     List<GameObject> actors = new List<GameObject>();
     public GameObject turnIndicator;
 
-    bool selectTargetMode;
+    public bool selectTargetMode;
     GameObject selectedTarget;
     public Attacks attackToUse = new Attacks();
 
@@ -52,6 +52,14 @@ public class TurnManager : MonoBehaviour
             actors.Add(actor);
             if (actor.TryGetComponent(out Character character))
             {
+                if (character.actorNumber == 0 || character.actorNumber == 1 || character.actorNumber == 2)
+                {
+                    Instantiate(Resources.Load("HealEffect"), actor.transform.position, Quaternion.identity);
+                    character.hp += 5;
+                    character.atk2Up = true;
+                    character.atk3Up = true;
+                    character.atk4Up = true;
+                }
                 if (character.actorNumber == 3 || character.actorNumber == 4 || character.actorNumber == 5)
                 {
                     character.stats = Lizard[randomliz];
@@ -121,7 +129,7 @@ public class TurnManager : MonoBehaviour
         foreach (var actor in actors)
         {
             Character character = actor.GetComponent<Character>();
-            if (character.targetable) targets.Add(actor);
+            if (character.targetable && !character.dead) targets.Add(actor);
         }
         int rng1 = Random.Range(0,2);
         if (!attackToUse.targetGroup)
@@ -277,6 +285,8 @@ public class TurnManager : MonoBehaviour
                 Character targetChar = actor.GetComponent<Character>();
                 //damage = Mathf.Clamp(damage, 0, 100);
                 targetChar.hp -= damage;
+                if (damage > 0) Instantiate(Resources.Load("HitEffect"), actor.transform.position, Quaternion.identity);
+                if (damage < 0) Instantiate(Resources.Load("HealEffect"), actor.transform.position, Quaternion.identity);
                 if (targetChar.hp <= 0) targetChar.dead = true;
                 if (attackToUse.mods.Count > 0)
                 {
@@ -292,11 +302,19 @@ public class TurnManager : MonoBehaviour
                             targetChar.buffs.Add(mod);
                         }
                     }
-                    else Debug.Log("Saved");
+                    else
+                    {
+                        Instantiate(Resources.Load("SaveEffect"), actor.transform.position, Quaternion.identity);
+                        Debug.Log("Saved");
+                    }
                 }
                 targetChar.UpdateStats();
             }
-            else Debug.Log("You missed");
+            else
+            {
+                Instantiate(Resources.Load("MissEffect"), actor.transform.position, Quaternion.identity);
+                Debug.Log("You missed");
+            }
         }
 
         attackToUse = null;

@@ -67,7 +67,7 @@ public class UIscroller : MonoBehaviour
             {
                 if (Globals.instance.charecterTurn.TryGetComponent(out Character character))
                 {
-                    if (character.player)
+                    if (character.player && !turnmanager.selectTargetMode)
                     {
                         atk1.interactable = true;
                         if (character.atk2Up && character.stats.attack2.id != 0) atk2.interactable = true; else atk2.interactable = false;

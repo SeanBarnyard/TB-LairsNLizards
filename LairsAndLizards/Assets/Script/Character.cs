@@ -36,7 +36,9 @@ public class Character : MonoBehaviour
             for (int i = 0; i < buffs.Count; i++)
             {
                 hp -= buffs[i].dot;
-                
+                if(buffs[i].dot > 0) Instantiate(Resources.Load("DoTEffect"), transform.position, Quaternion.identity);
+                if (buffs[i].dot < 0) Instantiate(Resources.Load("HealEffect"), transform.position, Quaternion.identity);
+
                 buffs[i].duration -= 1;
             }
         }
