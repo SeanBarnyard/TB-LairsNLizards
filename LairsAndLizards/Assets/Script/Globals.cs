@@ -56,7 +56,7 @@ public class Globals : MonoBehaviour
         empty.name = "Empty"; empty.id = 0;
 
         //Basic player attacks
-        basic.name = "Basic Attack"; basic.id = 1; basic.usesStr = true; basic.baseDamage = 1;
+        basic.name = "Basic Attack"; basic.id = 1; basic.usesStr = true; basic.baseDamage = 1; basic.description = "Smacks the opponent";
 
         wAbility.name = "FireBolt"; wAbility.id = 2; wAbility.intSave = 8; wAbility.usesInt = true;
         mod.dot = 5; mod.duration = 3; wAbility.mods.Add(mod); mod = new Modifiers();

@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour
 
     bool selectTargetMode;
     GameObject selectedTarget;
-    Attacks attackToUse = new Attacks();
+    public Attacks attackToUse = new Attacks();
 
     private void Awake()
     {

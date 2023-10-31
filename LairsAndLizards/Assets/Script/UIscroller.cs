@@ -9,6 +9,7 @@ public class UIscroller : MonoBehaviour
     public List<Image> CharIcon;
     public TurnManager turnmanager;
     public Button atk1, atk2, atk3, atk4;
+    public TextMeshProUGUI attkdescription;
     public int positionindex;
     public bool imageShift;
     public List<float> position = new List<float>();
@@ -51,6 +52,11 @@ public class UIscroller : MonoBehaviour
 
     void Update()
     {
+        if (turnmanager.attackToUse != null)
+        {
+            attkdescription.text = turnmanager.attackToUse.description;
+        }
+        else attkdescription.text = "";
         if (imageShift)
         {
             Nextturnimagescroll();
