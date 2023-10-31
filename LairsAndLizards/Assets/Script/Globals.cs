@@ -138,10 +138,10 @@ public class StatSheet
     public Sprite sprite = null;
     public int vitality = 10;
     public int baseStr = 3, baseDex = 3, baseInt = 3;
-    public Attacks attack1 = Globals.instance.empty,
-        attack2 = Globals.instance.empty,
-        attack3 = Globals.instance.empty,
-        attack4 = Globals.instance.empty;
+    public Attacks attack1 = new Attacks(),
+        attack2 = new Attacks(),
+        attack3 = new Attacks(),
+        attack4 = new Attacks();
 }
 
 

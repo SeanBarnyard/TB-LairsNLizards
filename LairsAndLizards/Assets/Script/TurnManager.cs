@@ -367,24 +367,28 @@ public class TurnManager : MonoBehaviour
         StrLiz.name = "Bricked up Benny"; StrLiz.vitality = 20;
         StrLiz.baseStr = 4; StrLiz.baseDex = 3; StrLiz.baseInt = 3;
         StrLiz.attack1 = Globals.instance.basic; StrLiz.attack2 = Globals.instance.tSwipe;
+        StrLiz.attack3 = Globals.instance.empty; StrLiz.attack4 = Globals.instance.empty;
         Lizard.Add(StrLiz);
 
         //Dex Lizard
         DexLiz.name = "Fast and Lizard"; DexLiz.vitality = 15;
         DexLiz.baseStr = 2; DexLiz.baseDex = 5; DexLiz.baseInt = 3;
         DexLiz.attack1 = Globals.instance.basic; DexLiz.attack2 = Globals.instance.sStorm;
+        DexLiz.attack3 = Globals.instance.empty; DexLiz.attack4 = Globals.instance.empty;
         Lizard.Add(DexLiz);
 
         //Int Lizard
         IntLiz.name = "Demetrius Demarcus Bartholomew James The Third"; IntLiz.vitality = 10;
         IntLiz.baseStr = 2; IntLiz.baseDex = 4; IntLiz.baseInt = 4;
         IntLiz.attack1 = Globals.instance.basic; IntLiz.attack2 = Globals.instance.fBreath;
+        IntLiz.attack3 = Globals.instance.empty; IntLiz.attack4 = Globals.instance.empty;
         Lizard.Add(IntLiz);
 
         //DefaultLizard
         defaultlizz.name = "Default Lizard Dance"; defaultlizz.vitality = 15;
         defaultlizz.baseStr = 3; defaultlizz.baseDex = 3; defaultlizz.baseInt = 3;
         defaultlizz.attack1 = Globals.instance.basic; defaultlizz.attack2 = Globals.instance.gasReg;
+        defaultlizz.attack3 = Globals.instance.empty; defaultlizz.attack4 = Globals.instance.empty;
         Lizard.Add(defaultlizz);
 
 

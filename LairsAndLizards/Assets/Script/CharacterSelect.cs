@@ -93,32 +93,32 @@ public class CharacterSelect : MonoBehaviour
         //Squire
         squire.name = "Squire"; squire.vitality = 30;
         squire.baseStr = 6; squire.baseDex = 5; squire.baseInt = 2;
-        squire.attack1 = g.basic; squire.attack2 = g.kAbility;
+        squire.attack1 = g.basic; squire.attack2 = g.kAbility; squire.attack3 = g.empty; squire.attack4 = g.empty;
 
         //Novice
         novice.name = "Novice"; novice.vitality = 20;
         novice.baseStr = 2; novice.baseDex = 4; novice.baseInt = 7;
-        novice.attack1 = g.basic; novice.attack2 = g.wAbility;
+        novice.attack1 = g.basic; novice.attack2 = g.wAbility; novice.attack3 = g.empty; novice.attack4 = g.empty;
 
         //Delinquent
         delinquent.name = "Delinquent"; delinquent.vitality = 20;
         delinquent.baseStr = 4; delinquent.baseDex = 6; delinquent.baseInt = 3;
-        delinquent.attack1 = g.basic; delinquent.attack2 = g.rAbility;
+        delinquent.attack1 = g.basic; delinquent.attack2 = g.rAbility; delinquent.attack3 = g.empty; delinquent.attack4 = g.empty;
 
         //Sonneteer
         sonneteer.name = "Sonneteer"; sonneteer.vitality = 20;
         sonneteer.baseStr = 4; sonneteer.baseDex = 4; sonneteer.baseInt = 5;
-        sonneteer.attack1 = g.basic; sonneteer.attack2 = g.bAbility;
+        sonneteer.attack1 = g.basic; sonneteer.attack2 = g.bAbility; sonneteer.attack3 = g.empty; sonneteer.attack4 = g.empty;
 
         //NatureSprite
         natureSprite.name = "NatureSprite"; natureSprite.vitality = 20;
         natureSprite.baseStr = 5; natureSprite.baseDex = 4; natureSprite.baseInt = 4;
-        natureSprite.attack1 = g.basic; natureSprite.attack2 = g.dAbility;
+        natureSprite.attack1 = g.basic; natureSprite.attack2 = g.dAbility; natureSprite.attack3 = g.empty; natureSprite.attack4 = g.empty;
 
         //CrossBearer
         crossBearer.name = "CrossBearer"; crossBearer.vitality = 20;
         crossBearer.baseStr = 6; crossBearer.baseDex = 1; crossBearer.baseInt = 6;
-        crossBearer.attack1 = g.basic; crossBearer.attack2 = g.pAbility; 
+        crossBearer.attack1 = g.basic; crossBearer.attack2 = g.pAbility; crossBearer.attack3 = g.empty; crossBearer.attack4 = g.empty;
 
         //Sprites for all, shouuuuuddda just made multiple sprite textues very epic
         Sprite[] sprites = Resources.LoadAll<Sprite>("The Boys");
