@@ -6,6 +6,9 @@ public class ItemPool : MonoBehaviour
 {
     public List<Equipment> pool;
 
+    // Both items and aabilities where planned to be randomly distributed to players upon comleting a wave
+    // and though it is close to comepletion they werent continued due to time. Rip this I guess :(
+
     private void Awake()
     {
         //Epmty Slot

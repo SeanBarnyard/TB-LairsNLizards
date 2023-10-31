@@ -85,7 +85,7 @@ public class TurnManager : MonoBehaviour
             }
         }
         if (lizards == 0) ResetLizards();
-        if (players == 0) Debug.Log("ResetGame");
+        if (players == 0) Globals.instance.GoToScene("EndScreen");
     }
 
 
