@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,7 @@ public class Globals : MonoBehaviour
     public static Globals instance;
     public StatSheet member1, member2, member3;
     public GameObject charecterTurn = null;
-
+    public int wave = 0;
     //public struct Attacks
     //{
     //    public string name;
@@ -60,17 +61,21 @@ public class Globals : MonoBehaviour
         basic.name = "Basic Attack"; basic.id = 1; basic.usesStr = true; basic.baseDamage = 1;
 
         wAbility.name = "FireBolt"; wAbility.id = 2; wAbility.intSave = 8; wAbility.usesInt = true;
-        mod.dot = 5; mod.duration = 3; wAbility.mods.Add(mod);
+        mod.dot = 5; mod.duration = 3; wAbility.mods.Add(mod); mod = new Modifiers();
 
-        kAbility.name = "Protect"; kAbility.id = 3;
+        kAbility.name = "Taunt"; kAbility.id = 3; kAbility.neverMiss = true; kAbility.strSave = 100; kAbility.targetTeam = true;
+        mod.taunt = true; mod.duration = 1; kAbility.mods.Add(mod); mod = new Modifiers();
 
-        bAbility.name = "C Major"; bAbility.id = 4;
+        bAbility.name = "C Major"; bAbility.id = 4; bAbility.neverMiss = true; bAbility.targetTeam = true; bAbility.baseDamage = -5; bAbility.strSave = 100;
+        mod.str = 1; mod.dex = 1; mod.wis = 1; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
 
-        rAbility.name = "Weak Point"; rAbility.id = 5;
+        rAbility.name = "Weak Point"; rAbility.id = 5; rAbility.neverMiss = true; rAbility.strRoll = true; rAbility.dexRoll = true; rAbility.intRoll = true;
 
         pAbility.name = "Smite"; pAbility.id = 6; pAbility.neverMiss = true; pAbility.usesInt = true; pAbility.strRoll = true; pAbility.intRoll = true;
 
-        dAbility.name = "IronBark"; dAbility.id = 7;
+        dAbility.name = "Regen"; dAbility.id = 7; dAbility.neverMiss = true; dAbility.targetTeam = true; dAbility.targetGroup = true; dAbility.baseDamage = -1;
+        dAbility.strSave = 100;
+        mod.dot = -3; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
 
         //Additional lootable player attacks
         pSand.name = "Pocket Sand"; pSand.id = 8; attackPool.Add(pSand);

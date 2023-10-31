@@ -70,8 +70,8 @@ public class UIscroller : MonoBehaviour
                     }
                     else
                     {
-                        atk1.interactable = false;
-                        atk2.interactable = false;
+                        //atk1.interactable = false;
+                        //atk2.interactable = false;
                         atk3.interactable = false;
                         atk4.interactable = false;
                     }

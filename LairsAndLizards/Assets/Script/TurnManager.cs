@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using static UnityEngine.GraphicsBuffer;
 
 public class TurnManager : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class TurnManager : MonoBehaviour
     public GameObject turnIndicator;
 
     bool selectTargetMode;
-    [SerializeField]GameObject selectedTarget;
+    GameObject selectedTarget;
     Attacks attackToUse = new Attacks();
 
     private void Awake()
@@ -39,14 +41,119 @@ public class TurnManager : MonoBehaviour
         Uiscroll.Characters = objectTurn;
     }
 
-    
+    public void ResetLizards()
+    {
+        objectTurn.Clear();
+        actors.Clear();
+        Globals.instance.wave += 1;
+        foreach (GameObject actor in GameObject.FindGameObjectsWithTag("Actor"))
+        {
+            int randomliz = Random.Range(0, Lizard.Count);
+            actors.Add(actor);
+            if (actor.TryGetComponent(out Character character))
+            {
+                if (character.actorNumber == 3 || character.actorNumber == 4 || character.actorNumber == 5)
+                {
+                    character.stats = Lizard[randomliz];
+                    character.hp = character.stats.vitality;
+                }
+                character.UpdateStats();
+            }
+        }
+        Initiative();
+        Globals.instance.charecterTurn = objectTurn[0];
+        Uiscroll.Characters = objectTurn;
+    }
+
+    void CheckTeamWipe()
+    {
+        int players = 0, lizards = 0;
+        foreach (GameObject actor in GameObject.FindGameObjectsWithTag("Actor"))
+        {
+            if (actor.TryGetComponent(out Character character))
+            {
+                if ((character.actorNumber == 0 || character.actorNumber == 1 || character.actorNumber == 2) && !character.dead) players++;
+                if ((character.actorNumber == 3 || character.actorNumber == 4 || character.actorNumber == 5) && !character.dead) lizards++;
+            }
+        }
+        if (lizards == 0) ResetLizards();
+        if (players == 0) Debug.Log("ResetGame");
+    }
+
+
     private void Update()
     {
+        Character characterTurn= null;
         if (objectTurn[turn] != null)
         {
             turnIndicator.transform.position = objectTurn[turn].transform.position;
+            characterTurn = objectTurn[turn].GetComponent<Character>();
         }
+        SelectTarget();
 
+        if (characterTurn != null)
+        {
+            if (!characterTurn.player) aiTurn();
+        }
+       
+
+    }
+
+    float aiTimer = 0;
+    void aiTurn()
+    {
+        aiTimer += Time.deltaTime;
+        if (aiTimer < 1) return;
+        // Get Attack -----------------------------------------------------------------------------------------------//
+        Character characterTurn = objectTurn[turn].GetComponent<Character>();
+        List<Attacks> attacks = new List<Attacks>();
+        attacks.Add(characterTurn.stats.attack1);
+        if (characterTurn.atk2Up && characterTurn.stats.attack2.id != 0) attacks.Add(characterTurn.stats.attack2);
+        if (characterTurn.atk3Up && characterTurn.stats.attack3.id != 0) attacks.Add(characterTurn.stats.attack3);
+        if (characterTurn.atk4Up && characterTurn.stats.attack4.id != 0) attacks.Add(characterTurn.stats.attack4);
+        attackToUse = attacks[Random.Range(0,attacks.Count)];
+        //-----------------------------------------------------------------------------------------------------------//
+        bool targetPlayerTeam = true;
+        if (attackToUse.targetTeam) targetPlayerTeam = false;
+        HighlightTargets(targetPlayerTeam);
+        // Get Target -----------------------------------------------------------------------------------------------//
+        List<GameObject> targets = new List<GameObject>();
+        foreach (var actor in actors)
+        {
+            Character character = actor.GetComponent<Character>();
+            if (character.targetable) targets.Add(actor);
+        }
+        int rng1 = Random.Range(0,2);
+        if (!attackToUse.targetGroup)
+        {
+            GameObject target = null;
+            if (rng1 == 0)
+            {
+                target = targets[Random.Range(0, targets.Count)];
+            }
+            else if (rng1 == 1)
+            {
+                int lowestHp = 10000; // cant get infinite as an int :/
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    Character character = targets[i].GetComponent<Character>();
+                    if(character.hp < lowestHp)
+                    {
+                        target = actors[i];
+                        lowestHp = character.hp;
+                    }
+                }
+            }
+            targets.Clear();
+            targets.Add(target);
+        }
+        //-----------------------------------------------------------------------------------------------------------//
+        aiTimer = 0;
+        UseAttack(targets);
+    }
+
+    void SelectTarget()
+    {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D col = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask("Actor"));
         if (col != null)
@@ -57,9 +164,9 @@ public class TurnManager : MonoBehaviour
 
         if (selectTargetMode)
         {
-            if(selectedTarget != null && Input.GetMouseButton(0))
+            if (selectedTarget != null && Input.GetMouseButton(0))
             {
-                List<GameObject> targets = new List<GameObject>(); 
+                List<GameObject> targets = new List<GameObject>();
                 if (attackToUse.targetGroup)
                 {
                     foreach (GameObject item in actors)
@@ -67,26 +174,30 @@ public class TurnManager : MonoBehaviour
                         Character character = item.GetComponent<Character>();
                         if (character.targetable) targets.Add(item);
                     }
-                        
+
                 }
                 else
                 {
                     targets.Add(selectedTarget);
                 }
+                if (TauntingTargets() != null)
+                {
+                    targets.Clear();
+                    targets.Add(TauntingTargets());
+                }
                 selectTargetMode = false;
                 UseAttack(targets);
             }
-
         }
-
     }
 
     public void NextTurn()
     {
+        CheckTeamWipe();
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
-        objectTurn[turn].GetComponent<Character>().UpdateStats();
+        objectTurn[turn].GetComponent<Character>().NewTurn();
         Uiscroll.imageShift = true;
         foreach (var actor in actors)
         {
@@ -164,6 +275,7 @@ public class TurnManager : MonoBehaviour
             if (hit)
             {
                 Character targetChar = actor.GetComponent<Character>();
+                //damage = Mathf.Clamp(damage, 0, 100);
                 targetChar.hp -= damage;
                 if (targetChar.hp <= 0) targetChar.dead = true;
                 if (attackToUse.mods.Count > 0)
@@ -182,8 +294,9 @@ public class TurnManager : MonoBehaviour
                     }
                     else Debug.Log("Saved");
                 }
+                targetChar.UpdateStats();
             }
-            else Debug.Log("You missed you bitch");
+            else Debug.Log("You missed");
         }
 
         attackToUse = null;
@@ -229,6 +342,24 @@ public class TurnManager : MonoBehaviour
         
 
     }
+
+    GameObject TauntingTargets()
+    {
+        GameObject taunter = null;
+        foreach (GameObject actor in actors)
+        {
+            Character character = actor.GetComponent<Character>();
+            bool attackerIsPlayer = objectTurn[turn].GetComponent<Character>().player;
+            bool actorIsPlayer = character.player;
+
+            if (attackerIsPlayer && !actorIsPlayer && character.taunting) taunter = actor;
+            if (!attackerIsPlayer && actorIsPlayer && character.taunting) taunter = actor;
+
+        }
+
+        return taunter;
+    }
+
     void MakeLizard()
     {
         
@@ -265,32 +396,6 @@ public class TurnManager : MonoBehaviour
             if (sprites[i].name == "IntLizard") IntLiz.sprite = sprites[i];
             if (sprites[i].name == "Lizard") defaultlizz.sprite = sprites[i];
         }
-    }
-
-    //void Death()
-    //{
-    //    foreach (GameObject actor in actors)
-    //    {
-    //        if (actor.TryGetComponent(out Character character))
-    //        {
-    //            if(character.stats.vitality <= 0)
-    //            {
-    //                character.dead = true;
-    //            }
-    //        }
-    //    }
-    //}
-
-    void ApplyDebuff()
-    {
-        //stun
-
-
-        //dot
-
-        //statmod
-
-        //silenced
     }
 
 }

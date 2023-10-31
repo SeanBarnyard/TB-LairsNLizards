@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,10 @@ public class Character : MonoBehaviour
     public List<Modifiers> buffs = new List<Modifiers>();
     public Slider HpBar;
     public int strength, dexterity, intelligence, hp;
-    public bool player, atk2Up = true, atk3Up = true, atk4Up = true, dead, targetable;
+    public bool player, atk2Up = true, atk3Up = true, atk4Up = true, dead, targetable, taunting;
     SpriteRenderer spriteRenderer;
+
+    [SerializeField] int damageOverTime;
 
     private void Awake()
     {
@@ -25,9 +28,27 @@ public class Character : MonoBehaviour
         hp = stats.vitality;
     }
 
+    public void NewTurn()
+    {
+        UpdateStats();
+        if (buffs.Count > 0)
+        {
+            for (int i = 0; i < buffs.Count; i++)
+            {
+                hp -= buffs[i].dot;
+                
+                buffs[i].duration -= 1;
+            }
+        }
+        
+
+    }
+
     public void UpdateStats()
     {
+        int DamageOT = 0;
         int buffStr = 0, buffDex = 0, buffInt = 0;
+        bool taunt = false;
         if(buffs.Count > 0)
         {
             for (int i = 0; i < buffs.Count; i++)
@@ -35,22 +56,23 @@ public class Character : MonoBehaviour
                 buffStr += buffs[i].str;
                 buffDex += buffs[i].dex;
                 buffInt += buffs[i].wis;
-
-                hp -= buffs[i].dot;
-                buffs[i].duration -= 1;
+                DamageOT += buffs[i].dot;
+                if (buffs[i].taunt) taunt = true;
             }
         }
-
-        
-
+        taunting = taunt;
+       
         strength = Mathf.Clamp(stats.baseStr + item1.strMod + item2.strMod + buffStr, 0, 20);
         dexterity = Mathf.Clamp(stats.baseDex + item1.dexMod + item2.dexMod + buffDex, 0, 20);
         intelligence = Mathf.Clamp(stats.baseInt + item1.intMod + item2.intMod + buffInt, 0, 20);
+        damageOverTime = DamageOT;
     }
 
     private void Update()
     {
         dead = hp <= 0;
+        if (hp > stats.vitality) hp = stats.vitality;
+
 
         foreach (var buff in buffs)
         {
