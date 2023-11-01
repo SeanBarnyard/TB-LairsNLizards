@@ -30,7 +30,6 @@ public class Character : MonoBehaviour
 
     public void NewTurn()
     {
-        UpdateStats();
         if (buffs.Count > 0)
         {
             for (int i = 0; i < buffs.Count; i++)
@@ -42,7 +41,7 @@ public class Character : MonoBehaviour
                 buffs[i].duration -= 1;
             }
         }
-        
+        Debug.Log("thing happening");
 
     }
 

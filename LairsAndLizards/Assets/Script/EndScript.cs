@@ -10,8 +10,9 @@ public class EndScript : MonoBehaviour
 
     public void SceneGoto(string scene)
     {
+        Globals.instance.charecterTurn = null;
+        Globals.instance.wave = 0;
         Globals.instance.GoToScene(scene);
-        Destroy(Globals.instance);
     }
 
     public void ExitGame()

@@ -58,22 +58,22 @@ public class Globals : MonoBehaviour
         //Basic player attacks
         basic.name = "Basic Attack"; basic.id = 1; basic.usesStr = true; basic.baseDamage = 1; basic.description = "Smacks the opponent";
 
-        wAbility.name = "FireBolt"; wAbility.id = 2; wAbility.intSave = 8; wAbility.usesInt = true; wAbility.description = "Launches a firebolt that applies a dot on enemies for 3 turns";
+        wAbility.name = "FireBolt"; wAbility.id = 2; wAbility.intSave = 8; wAbility.usesInt = true; wAbility.description = "Launches a firebolt that can appliy a dot on enemies for 3 turns";
         mod.dot = 5; mod.duration = 3; wAbility.mods.Add(mod); mod = new Modifiers();
 
         kAbility.name = "Taunt"; kAbility.id = 3; kAbility.neverMiss = true; kAbility.strSave = 100; kAbility.targetTeam = true; kAbility.description = "Makes the enemy attack focused on you";
-        mod.taunt = true; mod.duration = 1; kAbility.mods.Add(mod); mod = new Modifiers();
+        mod.taunt = true; mod.duration = 2; kAbility.mods.Add(mod); mod = new Modifiers();
 
-        bAbility.name = "C Major"; bAbility.id = 4; bAbility.neverMiss = true; bAbility.targetTeam = true; bAbility.baseDamage = -5; bAbility.strSave = 100; bAbility.description = "Heals an entity";
-        mod.str = 1; mod.dex = 1; mod.wis = 1; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
+        bAbility.name = "C Major"; bAbility.id = 4; bAbility.neverMiss = true; bAbility.targetTeam = true; bAbility.baseDamage = -5; bAbility.strSave = 100; bAbility.description = "Heals an entity and buffs their stats";
+        mod.str = 2; mod.dex = 2; mod.wis = 2; mod.duration = 2; bAbility.mods.Add(mod); mod = new Modifiers();
 
         rAbility.name = "Weak Point"; rAbility.id = 5; rAbility.neverMiss = true; rAbility.strRoll = true; rAbility.dexRoll = true; rAbility.intRoll = true; rAbility.description = "A heavy attack that never misses";
 
         pAbility.name = "Smite"; pAbility.id = 6; pAbility.neverMiss = true; pAbility.usesInt = true; pAbility.strRoll = true; pAbility.intRoll = true; pAbility.description = "A ray of Holy light that damages the target";
 
-        dAbility.name = "Regen"; dAbility.id = 7; dAbility.neverMiss = true; dAbility.targetTeam = true; dAbility.targetGroup = true; dAbility.baseDamage = -1; dAbility.description = "A heal that applies a healing dot";
+        dAbility.name = "Regen"; dAbility.id = 7; dAbility.neverMiss = true; dAbility.targetTeam = true; dAbility.targetGroup = true; dAbility.baseDamage = -1; dAbility.description = "A group heal that applies a healing dot";
         dAbility.strSave = 100;
-        mod.dot = -3; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
+        mod.dot = -5; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
 
         //Additional lootable player attacks
         pSand.name = "Pocket Sand"; pSand.id = 8; attackPool.Add(pSand);
@@ -98,13 +98,13 @@ public class Globals : MonoBehaviour
         tSwipe.name = "Tail Swipe"; tSwipe.id = 16; tSwipe.baseDamage = 2; tSwipe.strRoll = true; tSwipe.targetGroup = true; tSwipe.description = "An aoe that deals dmg to the enemy team";
 
         fBreath.name = "Fire Breath"; fBreath.id = 17; fBreath.baseDamage = 1; fBreath.targetGroup = true; fBreath.intSave = 7; fBreath.description = "Breaths fire in an aoe to apply a dot";
-        mod.dot = 3; mod.duration = 3; fBreath.mods.Add(mod); mod = new Modifiers();
+        mod.dot = 4; mod.duration = 3; fBreath.mods.Add(mod); mod = new Modifiers();
 
-        gasReg.name = "Gas Regurgatate"; gasReg.id = 18; gasReg.baseDamage = 0; gasReg.targetTeam = true; gasReg.dexSave = 7; gasReg.description = "Vomits on allies and heals them";
+        gasReg.name = "Gas Regurgatate"; gasReg.id = 18; gasReg.baseDamage = -3; gasReg.targetTeam = true; gasReg.dexSave = 12; gasReg.description = "Vomits on allies and heals them";
         mod.dot = -3; mod.duration = 2; dAbility.mods.Add(mod); mod = new Modifiers();
 
         sStorm.name = "Sandstorm"; sStorm.id = 19; sStorm.neverMiss = true; sStorm.dexRoll = true; sStorm.description = "Blinds an oppoonent with sand"; sStorm.dexSave = 100;
-        mod.dex = -2; mod.duration = 2; sStorm.mods.Add(mod); mod = new Modifiers();
+        mod.dex = -2; mod.duration = 1; sStorm.mods.Add(mod); mod = new Modifiers();
 
     }
 

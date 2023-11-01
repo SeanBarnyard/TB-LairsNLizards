@@ -55,7 +55,7 @@ public class TurnManager : MonoBehaviour
                 if (character.actorNumber == 0 || character.actorNumber == 1 || character.actorNumber == 2)
                 {
                     Instantiate(Resources.Load("HealEffect"), actor.transform.position, Quaternion.identity);
-                    character.hp += 5;
+                    character.hp += 10;
                     character.atk2Up = true;
                     character.atk3Up = true;
                     character.atk4Up = true;
@@ -73,7 +73,7 @@ public class TurnManager : MonoBehaviour
         Uiscroll.Characters = objectTurn;
     }
 
-    void CheckTeamWipe()
+    bool CheckTeamWipe()
     {
         int players = 0, lizards = 0;
         foreach (GameObject actor in GameObject.FindGameObjectsWithTag("Actor"))
@@ -84,8 +84,17 @@ public class TurnManager : MonoBehaviour
                 if ((character.actorNumber == 3 || character.actorNumber == 4 || character.actorNumber == 5) && !character.dead) lizards++;
             }
         }
-        if (lizards == 0) ResetLizards();
-        if (players == 0) Globals.instance.GoToScene("EndScreen");
+        if (lizards == 0)
+        {           
+            ResetLizards();
+            return true;
+        }
+        else if (players == 0)
+        {
+            Globals.instance.GoToScene("EndScreen");
+            return true;
+        }
+        else return false;
     }
 
 
@@ -201,16 +210,17 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
-        CheckTeamWipe();
-        turn++;
-        if(turn >= objectTurn.Count) turn = 0;
-        Globals.instance.charecterTurn = objectTurn[turn];
-        objectTurn[turn].GetComponent<Character>().NewTurn();
-        Uiscroll.imageShift = true;
         foreach (var actor in actors)
         {
             actor.GetComponent<Character>().targetable = false;
         }
+        if (CheckTeamWipe()) return;
+        objectTurn[turn].GetComponent<Character>().NewTurn();
+        turn++;
+        if(turn >= objectTurn.Count) turn = 0;
+        Globals.instance.charecterTurn = objectTurn[turn];
+        objectTurn[turn].GetComponent<Character>().UpdateStats();
+        Uiscroll.imageShift = true;
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
     }
 
@@ -397,7 +407,7 @@ public class TurnManager : MonoBehaviour
 
         //Int Lizard
         IntLiz.name = "Demetrius Demarcus Bartholomew James The Third"; IntLiz.vitality = 10;
-        IntLiz.baseStr = 2; IntLiz.baseDex = 4; IntLiz.baseInt = 4;
+        IntLiz.baseStr = 2; IntLiz.baseDex = 4; IntLiz.baseInt = 5;
         IntLiz.attack1 = Globals.instance.basic; IntLiz.attack2 = Globals.instance.fBreath;
         IntLiz.attack3 = Globals.instance.empty; IntLiz.attack4 = Globals.instance.empty;
         Lizard.Add(IntLiz);
