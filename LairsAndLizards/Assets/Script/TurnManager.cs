@@ -215,10 +215,11 @@ public class TurnManager : MonoBehaviour
             actor.GetComponent<Character>().targetable = false;
         }
         if (CheckTeamWipe()) return;
-        objectTurn[turn].GetComponent<Character>().NewTurn();
+        objectTurn[turn].GetComponent<Character>().UpdateStats();
         turn++;
         if(turn >= objectTurn.Count) turn = 0;
         Globals.instance.charecterTurn = objectTurn[turn];
+        objectTurn[turn].GetComponent<Character>().NewTurn();
         objectTurn[turn].GetComponent<Character>().UpdateStats();
         Uiscroll.imageShift = true;
         if (Globals.instance.charecterTurn.GetComponent<Character>().dead) NextTurn();
