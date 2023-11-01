@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1283439331}
-        m_TargetAssemblyTypeName: Globals, Assembly-CSharp
-        m_MethodName: GoToScene
+      - m_Target: {fileID: 1500676436}
+        m_TargetAssemblyTypeName: EndScript, Assembly-CSharp
+        m_MethodName: SceneGoto
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10719,6 +10719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb88d5fa677422145977403d021e70e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavesTxt: {fileID: 1983173300}
 --- !u!1 &1983173298
 GameObject:
   m_ObjectHideFlags: 0
@@ -10936,9 +10937,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1283439331}
-        m_TargetAssemblyTypeName: Globals, Assembly-CSharp
-        m_MethodName: QUITGAME
+      - m_Target: {fileID: 1500676436}
+        m_TargetAssemblyTypeName: EndScript, Assembly-CSharp
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
