@@ -100,6 +100,7 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
+        Globals.instance.charecterTurn = objectTurn[turn];
         Character characterTurn= null;
         if (objectTurn[turn] != null)
         {
